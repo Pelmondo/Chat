@@ -87,8 +87,11 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
     }
     
     func session(_ session: MCSession, didReceive data: Data, fromPeer peerID: MCPeerID) {
-        let dictionary: [String: AnyObject] = ["data": data as AnyObject, "fromPeer": peerID]
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receivedMPCDataNotification"), object: dictionary)
+        let json = try! JSONSerialization.jsonObject(with: data)
+        let message = json as! [String: String]
+        if let text = message["text"]{
+            delegate?.didReceiveMessage(MultipeerCommunicator(), text: text, from: user)
+        }
     }
     
     func session(_ session: MCSession, didReceive stream: InputStream, withName streamName: String, fromPeer peerID: MCPeerID) {
@@ -124,6 +127,15 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
             }
         }
         delegate?.didLostUser(MultipeerCommunicator(), user: user)
+    }
+    
+    
+    func sendData(dictionaryWithData dictionary: Dictionary<String, String>, toPeer targetPeer: MCPeerID) -> Bool {
+        let dataToSend = NSKeyedArchiver.archivedData(withRootObject: dictionary)
+        let peersArray = NSArray(object: targetPeer)
+        var error: NSError?
+        
+        return true
     }
     
 }

@@ -20,6 +20,8 @@
 		5631482621562FD700F4A1B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5631482521562FD700F4A1B0 /* Assets.xcassets */; };
 		5631482921562FD700F4A1B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5631482721562FD700F4A1B0 /* LaunchScreen.storyboard */; };
 		564BDEBD215B8FD500BD777E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564BDEBC215B8FD500BD777E /* ProfileViewController.swift */; };
+		566F6DE821914F1000463D61 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566F6DE721914F1000463D61 /* ServiceLocator.swift */; };
+		566F6DEA219150B300463D61 /* ImageSourcePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566F6DE9219150B300463D61 /* ImageSourcePicker.swift */; };
 		56EADCB121750A3C00A236FC /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EADCB021750A3C00A236FC /* Conversation.swift */; };
 		56EADCB32175288900A236FC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EADCB22175288900A236FC /* Message.swift */; };
 		56EADCB521754CDB00A236FC /* CellChatConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EADCB421754CDB00A236FC /* CellChatConfig.swift */; };
@@ -41,6 +43,8 @@
 		5631482821562FD700F4A1B0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5631482A21562FD700F4A1B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		564BDEBC215B8FD500BD777E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		566F6DE721914F1000463D61 /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
+		566F6DE9219150B300463D61 /* ImageSourcePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSourcePicker.swift; sourceTree = "<group>"; };
 		56EADCB021750A3C00A236FC /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		56EADCB22175288900A236FC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		56EADCB421754CDB00A236FC /* CellChatConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellChatConfig.swift; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				560C823A2190B29B00ED0483 /* Conversations */,
 				564BDEBC215B8FD500BD777E /* ProfileViewController.swift */,
 				5605CF0B217E4E3F00786E8E /* GCDDataManager.swift */,
+				566F6DE721914F1000463D61 /* ServiceLocator.swift */,
+				566F6DE9219150B300463D61 /* ImageSourcePicker.swift */,
 				5605CF0D217E4E7500786E8E /* OperationDataManager.swift */,
 			);
 			path = TinkoffChat;
@@ -190,7 +196,9 @@
 				560C82412190B54500ED0483 /* CommunicationManager.swift in Sources */,
 				560C823F2190B45D00ED0483 /* MultipeerCommunicator.swift in Sources */,
 				564BDEBD215B8FD500BD777E /* ProfileViewController.swift in Sources */,
+				566F6DEA219150B300463D61 /* ImageSourcePicker.swift in Sources */,
 				560FD8F1216B609F00B70226 /* CellConfig.swift in Sources */,
+				566F6DE821914F1000463D61 /* ServiceLocator.swift in Sources */,
 				560FD8F3216B784400B70226 /* ConversationViewController.swift in Sources */,
 				5631481F21562FD500F4A1B0 /* AppDelegate.swift in Sources */,
 				560C823D2190B30E00ED0483 /* CommunicatorProtocol.swift in Sources */,

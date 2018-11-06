@@ -19,6 +19,8 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     private let comingCell = "come"
     private let outCell = "out"
     
+    let mcConfig = MultipeerCommunicator()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
@@ -28,6 +30,7 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
         self.hideKeyboard()
         
     }
+    
     
     deinit {
         removeKeyboardNotifications()
@@ -58,7 +61,7 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: comingCell, for: indexPath)
             if let cell = cell as? MessageCellConfiguration {
                 let item = messages[indexPath.section][indexPath.row]
-                cell.textMessage = item.textMessage
+                cell.textMessage = message
                 cell.isInComing = item.isInComing
               //  print(item.isInComing)
             }
@@ -74,7 +77,7 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
             return cell
   }
  }
-    
+    var path = IndexPath()
     // MARK: - MC Delegate
     
     func didFoundUser(_ communicator: Communicator, user: User) {
@@ -84,19 +87,37 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     func didLostUser(_ communicator: Communicator, user: User) {
         tableView.reloadData()
     }
-    
+    var message = ""
     func didReceiveMessage(_ communicator: Communicator, text: String, from user: User) {
-        
+        message = text
     }
     
     func didFailed(_ communicator: Communicator, with error: Error) {
         
     }
     
-    @IBAction func sendButtonDo(_ sender: UIButton) {
-          
+    func getMessage () -> [String:String]{
+        var message = ["text":""]
+        if let text = messegeTextField.text {
+            message.updateValue(text, forKey: "text")
+        return message
+        } else {
+            return message
         }
-    // to do
+    }
+    
+   
+    @IBAction func sendButtonDo(_ sender: UIButton) {
+        let jsonData = try! JSONSerialization.data(withJSONObject: getMessage())
+        do {
+            try mcConfig.session.send(jsonData, toPeers: [mcConfig.foundPeers[path.row]], with: .reliable)
+        } catch {
+            print(error)
+            
+        }
+    }
+    
+    
     
     
     // MARK: - Keyboard

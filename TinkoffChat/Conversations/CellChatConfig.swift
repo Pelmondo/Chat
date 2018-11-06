@@ -19,6 +19,7 @@ class CellChatConfig: UITableViewCell, MessageCellConfiguration {
     
     var test :Bool?
     
+    
     var isInComing : Bool = true {
         didSet {
             let test = isInComing
@@ -32,6 +33,7 @@ class CellChatConfig: UITableViewCell, MessageCellConfiguration {
                 
             } else {
                 if let text = textMessage {
+                    
                     messageCome.text = text
                     messageCome.layer.masksToBounds = true
                     messageCome.layer.cornerRadius = 6
