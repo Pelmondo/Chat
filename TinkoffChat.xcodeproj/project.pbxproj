@@ -22,6 +22,8 @@
 		564BDEBD215B8FD500BD777E /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564BDEBC215B8FD500BD777E /* ProfileViewController.swift */; };
 		566F6DE821914F1000463D61 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566F6DE721914F1000463D61 /* ServiceLocator.swift */; };
 		566F6DEA219150B300463D61 /* ImageSourcePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566F6DE9219150B300463D61 /* ImageSourcePicker.swift */; };
+		5697B941219A7093001C14D9 /* Storage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5697B93F219A7093001C14D9 /* Storage.xcdatamodeld */; };
+		5697B943219A727A001C14D9 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5697B942219A727A001C14D9 /* Storage.swift */; };
 		56EADCB121750A3C00A236FC /* Conversation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EADCB021750A3C00A236FC /* Conversation.swift */; };
 		56EADCB32175288900A236FC /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EADCB22175288900A236FC /* Message.swift */; };
 		56EADCB521754CDB00A236FC /* CellChatConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56EADCB421754CDB00A236FC /* CellChatConfig.swift */; };
@@ -45,6 +47,8 @@
 		564BDEBC215B8FD500BD777E /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		566F6DE721914F1000463D61 /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		566F6DE9219150B300463D61 /* ImageSourcePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSourcePicker.swift; sourceTree = "<group>"; };
+		5697B940219A7093001C14D9 /* Storage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Storage.xcdatamodel; sourceTree = "<group>"; };
+		5697B942219A727A001C14D9 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		56EADCB021750A3C00A236FC /* Conversation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversation.swift; sourceTree = "<group>"; };
 		56EADCB22175288900A236FC /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		56EADCB421754CDB00A236FC /* CellChatConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellChatConfig.swift; sourceTree = "<group>"; };
@@ -113,7 +117,9 @@
 				564BDEBC215B8FD500BD777E /* ProfileViewController.swift */,
 				5605CF0B217E4E3F00786E8E /* GCDDataManager.swift */,
 				566F6DE721914F1000463D61 /* ServiceLocator.swift */,
+				5697B942219A727A001C14D9 /* Storage.swift */,
 				566F6DE9219150B300463D61 /* ImageSourcePicker.swift */,
+				5697B93F219A7093001C14D9 /* Storage.xcdatamodeld */,
 				5605CF0D217E4E7500786E8E /* OperationDataManager.swift */,
 			);
 			path = TinkoffChat;
@@ -192,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56EADCB121750A3C00A236FC /* Conversation.swift in Sources */,
+				5697B941219A7093001C14D9 /* Storage.xcdatamodeld in Sources */,
 				5605CF0E217E4E7500786E8E /* OperationDataManager.swift in Sources */,
 				560C82412190B54500ED0483 /* CommunicationManager.swift in Sources */,
 				560C823F2190B45D00ED0483 /* MultipeerCommunicator.swift in Sources */,
@@ -205,6 +212,7 @@
 				56EADCB521754CDB00A236FC /* CellChatConfig.swift in Sources */,
 				5605CF0C217E4E3F00786E8E /* GCDDataManager.swift in Sources */,
 				560FD8EF216B601300B70226 /* ConversationsListViewController.swift in Sources */,
+				5697B943219A727A001C14D9 /* Storage.swift in Sources */,
 				56EADCB32175288900A236FC /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -401,6 +409,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5697B93F219A7093001C14D9 /* Storage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5697B940219A7093001C14D9 /* Storage.xcdatamodel */,
+			);
+			currentVersion = 5697B940219A7093001C14D9 /* Storage.xcdatamodel */;
+			path = Storage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5631481321562FD500F4A1B0 /* Project object */;
 }

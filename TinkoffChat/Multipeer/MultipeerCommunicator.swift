@@ -18,6 +18,7 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
     
     var advertiser: MCNearbyServiceAdvertiser!
     var session: MCSession!
+    var sessions: [NSObject: MCSession] = [:]
     
     private let myPeerID: MCPeerID
     override init() {
@@ -54,7 +55,17 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
         return newPeerID
     }
     
+    
+    
     func sendMessage(text: String, to user: User) -> Bool {
+      //  var message = ["text": text]
+      //  let jsonData = try! JSONSerialization.data(withJSONObject: message)
+      //  do {
+      //      try sessions[user.uid]?.send(jsonData, toPeers: [user.uid as! MCPeerID], with: .reliable)
+       // } catch {
+       //     print(error)
+            
+      //  }
         return true
     }
     
@@ -90,7 +101,7 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
         let json = try! JSONSerialization.jsonObject(with: data)
         let message = json as! [String: String]
         if let text = message["text"]{
-            delegate?.didReceiveMessage(MultipeerCommunicator(), text: text, from: user)
+            delegate?.didReceiveMessage(self, text: text, from: user)
         }
     }
     

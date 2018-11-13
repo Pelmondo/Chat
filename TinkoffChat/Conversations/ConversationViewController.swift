@@ -96,25 +96,17 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
         
     }
     
-    func getMessage () -> [String:String]{
-        var message = ["text":""]
-        if let text = messegeTextField.text {
-            message.updateValue(text, forKey: "text")
-        return message
-        } else {
-            return message
-        }
-    }
-    
-   
     @IBAction func sendButtonDo(_ sender: UIButton) {
-        let jsonData = try! JSONSerialization.data(withJSONObject: getMessage())
-        do {
-            try mcConfig.session.send(jsonData, toPeers: [mcConfig.foundPeers[path.row]], with: .reliable)
-        } catch {
-            print(error)
+        
+       
+        
+      //  let jsonData  = try! JSONSerialization.data(withJSONObject: getMessage())
+    //    do {
+    //        try mcConfig.session.send(jsonData, toPeers: [mcConfig.foundPeers[path.row]], with: .reliable)
+   //     } catch {
+   //         print(error)
             
-        }
+        //}
     }
     
     

@@ -178,6 +178,9 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBAction func touchGcdButtom(_ sender: UIButton) {
         // todo rebild name!
     //    fillTest()
+        
+        
+        
         if let name = nameTextField.text {
         SaveTrue(data: name , fileData: nameData)
        }
