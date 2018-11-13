@@ -173,12 +173,17 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         return paths[0]
     }
     
-   
+   let storage = Storage()
     
     @IBAction func touchGcdButtom(_ sender: UIButton) {
         // todo rebild name!
     //    fillTest()
         
+    
+        let newData = UserData(context: storage.mainContext)
+        newData.name = nameTextField.text
+        newData.info = descriptionTextView.text
+        storage.performSave(with: newData.managedObjectContext!, completion: nil)
         
         
         if let name = nameTextField.text {
