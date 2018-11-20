@@ -257,13 +257,13 @@
                                                 </constraints>
                                             </imageView>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wl2-Hm-1ui">
-                                                <rect key="frame" x="16" y="490" width="50" height="50"/>
+                                                <rect key="frame" x="16" y="490" width="214" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="B9h-dD-g8n"/>
                                                     <constraint firstAttribute="height" constant="50" id="Elv-Ho-n9D"/>
                                                 </constraints>
-                                                <state key="normal" title="GCD"/>
+                                                <state key="normal" title="Сохранить "/>
                                                 <connections>
                                                     <action selector="touchGcdButtom:" destination="idg-8Q-ffF" eventType="touchUpInside" id="FLs-iC-BeT"/>
                                                 </connections>
@@ -302,17 +302,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="255" verticalHuggingPriority="255" horizontalCompressionResistancePriority="755" verticalCompressionResistancePriority="755" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0pP-9X-use">
-                                                <rect key="frame" x="133" y="490" width="80" height="58"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="HHD-xE-NPl"/>
-                                                </constraints>
-                                                <state key="normal" title="Options"/>
-                                                <connections>
-                                                    <action selector="touchOptionsButtom:" destination="idg-8Q-ffF" eventType="touchUpInside" id="dW0-Sd-lZv"/>
-                                                </connections>
-                                            </button>
                                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s1z-zZ-HFX">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                                 <items>
@@ -349,20 +338,17 @@
                                             <constraint firstAttribute="bottom" secondItem="WOw-Kr-Kxj" secondAttribute="bottom" constant="8" id="4bK-nd-O5C"/>
                                             <constraint firstItem="WOw-Kr-Kxj" firstAttribute="top" secondItem="NdM-K9-Ooj" secondAttribute="bottom" constant="8" id="74t-oK-ZJP"/>
                                             <constraint firstAttribute="bottom" secondItem="7PE-1m-5Va" secondAttribute="bottom" constant="8" id="AgV-a1-Bk5"/>
-                                            <constraint firstItem="0pP-9X-use" firstAttribute="leading" secondItem="Wl2-Hm-1ui" secondAttribute="trailing" constant="67" id="Asc-CR-6YA"/>
+                                            <constraint firstItem="WOw-Kr-Kxj" firstAttribute="leading" secondItem="Wl2-Hm-1ui" secondAttribute="trailing" constant="24" id="DAk-B7-anT"/>
                                             <constraint firstItem="7PE-1m-5Va" firstAttribute="top" relation="greaterThanOrEqual" secondItem="NdM-K9-Ooj" secondAttribute="bottom" constant="8" id="DYn-Pu-QkA"/>
                                             <constraint firstItem="Ql4-z1-796" firstAttribute="leading" secondItem="z3M-Um-ltW" secondAttribute="leading" id="Him-Bc-u5z"/>
                                             <constraint firstAttribute="trailing" secondItem="WOw-Kr-Kxj" secondAttribute="trailing" constant="16" id="MxB-EO-yXu"/>
-                                            <constraint firstItem="0pP-9X-use" firstAttribute="top" secondItem="NdM-K9-Ooj" secondAttribute="bottom" constant="8" id="O8s-UP-oms"/>
                                             <constraint firstAttribute="trailing" secondItem="NdM-K9-Ooj" secondAttribute="trailing" constant="16" id="QRw-nH-Jo2"/>
                                             <constraint firstItem="s1z-zZ-HFX" firstAttribute="bottom" secondItem="Ql4-z1-796" secondAttribute="top" id="RcN-Sh-sxe"/>
-                                            <constraint firstItem="WOw-Kr-Kxj" firstAttribute="leading" relation="lessThanOrEqual" secondItem="0pP-9X-use" secondAttribute="trailing" constant="84" id="S6K-1A-IK3"/>
                                             <constraint firstItem="NdM-K9-Ooj" firstAttribute="top" secondItem="O87-cI-ste" secondAttribute="bottom" constant="8" id="SsV-LB-5NU"/>
                                             <constraint firstItem="O87-cI-ste" firstAttribute="top" secondItem="Ql4-z1-796" secondAttribute="bottom" constant="8" id="Ux8-gX-ZNg"/>
                                             <constraint firstItem="O87-cI-ste" firstAttribute="leading" secondItem="z3M-Um-ltW" secondAttribute="leading" constant="16" id="cHA-OZ-hVO"/>
                                             <constraint firstItem="7PE-1m-5Va" firstAttribute="leading" secondItem="z3M-Um-ltW" secondAttribute="leading" constant="16" id="cPD-M6-pww"/>
                                             <constraint firstAttribute="trailing" secondItem="s1z-zZ-HFX" secondAttribute="trailing" id="dVl-rC-xCg"/>
-                                            <constraint firstAttribute="bottom" secondItem="0pP-9X-use" secondAttribute="bottom" id="ev8-MH-41M"/>
                                             <constraint firstItem="s1z-zZ-HFX" firstAttribute="leading" secondItem="z3M-Um-ltW" secondAttribute="leading" id="ghA-9C-k9v"/>
                                             <constraint firstAttribute="trailing" secondItem="7PE-1m-5Va" secondAttribute="trailing" constant="16" id="h7l-GQ-zUl"/>
                                             <constraint firstAttribute="trailing" secondItem="Ql4-z1-796" secondAttribute="trailing" id="hrB-hs-gKf"/>
@@ -398,7 +384,6 @@
                         <outlet property="descriptionTextView" destination="NdM-K9-Ooj" id="E0F-8f-eid"/>
                         <outlet property="gcdDataManager" destination="Wl2-Hm-1ui" id="Gs9-Xc-cbH"/>
                         <outlet property="nameTextField" destination="O87-cI-ste" id="Dfc-ea-ivs"/>
-                        <outlet property="optionsDataManager" destination="0pP-9X-use" id="eVR-Zu-KHT"/>
                         <outlet property="photoImageView" destination="Ql4-z1-796" id="CFs-Rp-EGc"/>
                         <outlet property="picthureButton" destination="WOw-Kr-Kxj" id="kDp-9g-yJj"/>
                         <outlet property="scrollView" destination="v2u-hG-wSF" id="bAG-Sk-lhM"/>

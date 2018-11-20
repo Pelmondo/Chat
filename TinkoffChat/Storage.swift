@@ -109,7 +109,9 @@ class Storage {
         return user
     }
     
+    let request : NSFetchRequest<UserData> = UserData.fetchRequest()
     
+    let sortDescription = NSSortDescriptor(key: "name", ascending: true)
     
     
     

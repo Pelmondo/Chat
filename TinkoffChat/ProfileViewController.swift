@@ -23,7 +23,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     @IBOutlet weak var nameTextField: UITextField!    
     
     @IBOutlet weak var gcdDataManager: UIButton!
-    @IBOutlet weak var optionsDataManager: UIButton!
     @IBAction func canselTap(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
@@ -54,7 +53,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         nameTextField.isUserInteractionEnabled = false
         descriptionTextView.isUserInteractionEnabled = false
         gcdDataManager.isUserInteractionEnabled = false
-        optionsDataManager.isUserInteractionEnabled = false
        // requestInfo()
         registerForKeyboardNotifications()
         self.hideKeyboard()
@@ -87,7 +85,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         picthureButton.layer.cornerRadius = 8
         descriptionTextView.layer.cornerRadius = 8
         gcdDataManager.layer.cornerRadius = 8
-        optionsDataManager.layer.cornerRadius = 8
     }
     
     // When touch up into button - action Edit informations about yourself
@@ -97,7 +94,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         picthureButton.isHidden = false
         changeButton.isHidden = true
         gcdDataManager.isHidden = false
-        optionsDataManager.isHidden = false
         nameTextField.isUserInteractionEnabled = true
         descriptionTextView.isUserInteractionEnabled = true
     }
@@ -106,14 +102,12 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     @IBAction func nameDidChange(_ sender: Any) {
        gcdDataManager.isUserInteractionEnabled = true
-       optionsDataManager.isUserInteractionEnabled = true
         
         
     }
     
     func textViewDidChange(_ textView: UITextView) {
         gcdDataManager.isUserInteractionEnabled = true
-        optionsDataManager.isUserInteractionEnabled = true
     }
   //  private func fillTest(){
         //let gcdTest = GCDDataManager()
@@ -168,9 +162,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             self.changeButton.isHidden = false
             self.gcdDataManager.isHidden = true
             self.picthureButton.isHidden = true
-            self.optionsDataManager.isHidden = true
             self.gcdDataManager.isUserInteractionEnabled = false
-            self.optionsDataManager.isUserInteractionEnabled = false
             }))
         self.present(alert,animated: true, completion: nil)
     }

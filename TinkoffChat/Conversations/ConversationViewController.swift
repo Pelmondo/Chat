@@ -97,22 +97,11 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     }
     
     @IBAction func sendButtonDo(_ sender: UIButton) {
+        print("Enter send button")
         
-       
-        
-      //  let jsonData  = try! JSONSerialization.data(withJSONObject: getMessage())
-    //    do {
-    //        try mcConfig.session.send(jsonData, toPeers: [mcConfig.foundPeers[path.row]], with: .reliable)
-   //     } catch {
-   //         print(error)
-            
-        //}
     }
-    
-    
-    
-    
-    // MARK: - Keyboard
+        
+     // MARK - Keyboard
     
     func removeKeyboardNotifications () {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
