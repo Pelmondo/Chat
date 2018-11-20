@@ -88,7 +88,6 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
             print("Connected to session: \(session)")
             //delegate?.connectedWithPeer(peerID: peerID)
             
-            
         case MCSessionState.connecting:
             print("Connecting to session: \(session)")
             

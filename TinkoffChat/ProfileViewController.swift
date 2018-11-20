@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import CoreData
 
-class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, DataManager {
+class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
     
     
     
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var picthureButton: UIButton!
@@ -36,8 +38,6 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     
     
     
-    
-    
     var imagePicker = UIImagePickerController()
     
     override func loadView() {
@@ -55,40 +55,24 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         descriptionTextView.isUserInteractionEnabled = false
         gcdDataManager.isUserInteractionEnabled = false
         optionsDataManager.isUserInteractionEnabled = false
-        requestInfo()
+       // requestInfo()
+        registerForKeyboardNotifications()
+        self.hideKeyboard()
         
+        let fetchRequest: NSFetchRequest<UserData> = UserData.fetchRequest()
         
+        do {
+            let people = try self.storage.mainContext.fetch(fetchRequest)
+            nameTextField.text = people.last?.name
+            descriptionTextView.text = people.last?.info
+        } catch {}
+    
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+    deinit {
+        removeKeyboardNotifications()
     }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    func textFieldDidBeginEditing(_ textField: UITextField)  {
-        let mainViewHeight = self.view.bounds.size.height
-        let mainViewWidth = self.view.bounds.size.width
-        
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: { () -> Void in
-            self.view.center = CGPoint(x: mainViewWidth / 2, y: mainViewHeight / 2 - 60)
-            
-        }, completion: nil)
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        let mainViewHeight = self.view.bounds.size.height
-        let mainViewWidth = self.view.bounds.size.width
-        
-        
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear, animations: { () -> Void in
-            self.view.center = CGPoint(x: mainViewWidth / 2, y: mainViewHeight / 2 )
-            
-        }, completion: nil)
-    }
-    
-    
+  
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -138,71 +122,46 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         
   //  }
     
-      private func requestInfo(){
-         let gcdTest = GCDDataManager()
-        nameTextField.text = gcdTest.asyncReadFile(fileForRead: nameData)
-        descriptionTextView.text = gcdTest.asyncReadFile(fileForRead: infoData)
+    private func requestInfo() {
          let url = self.getDocumentsDirectory().appendingPathComponent("copy.png")
             let data = try! Data(contentsOf: url)
             let image = UIImage(data: data)
          photoImageView.image = image
     }
- 
-
-    
-    @IBAction func touchOptionsButtom(_ sender: UIButton) {
-         let gcdTest = OperationDataManager()
-        nameTextField.text = gcdTest.asyncReadFile(fileForRead: nameData)
-        descriptionTextView.text = gcdTest.asyncReadFile(fileForRead: infoData)
-        let alert = UIAlertController(title: nil, message: "Saved", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            self.changeButton.isHidden = false
-            self.gcdDataManager.isHidden = true
-            self.picthureButton.isHidden = true
-            self.optionsDataManager.isHidden = true
-            self.gcdDataManager.isUserInteractionEnabled = false
-            self.optionsDataManager.isUserInteractionEnabled = false
-            print("asd")}))
-        self.present(alert,animated: true, completion: nil)
-    }
-        
-    
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
-   let storage = Storage()
+   
+    let storage = Storage()
+    
     
     @IBAction func touchGcdButtom(_ sender: UIButton) {
         // todo rebild name!
     //    fillTest()
         
-    
-        let newData = UserData(context: storage.mainContext)
-        newData.name = nameTextField.text
-        newData.info = descriptionTextView.text
-        storage.performSave(with: newData.managedObjectContext!, completion: nil)
-        
+        let users = UserData(context: self.storage.saveContext)
         
         if let name = nameTextField.text {
-        SaveTrue(data: name , fileData: nameData)
-       }
-        
-        if let info = descriptionTextView.text {
-            SaveTrue(data: info, fileData: infoData)
+        users.name = name
         }
         
-        DispatchQueue.global(qos: .default).async {
+        if let info = descriptionTextView.text {
+            users.info = info
+        }
+        
+        self.storage.performSave(with: self.storage.saveContext)
+        
+        
         if let image = self.photoImageView.image {
             if let data = image.pngData() {
                 let filename = self.getDocumentsDirectory().appendingPathComponent("copy.png")
                 try? data.write(to: filename)
                 print(data)
+           }
             }
-            }
-        }
         
         let alert = UIAlertController(title: nil, message: "Saved", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
@@ -215,11 +174,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
             }))
         self.present(alert,animated: true, completion: nil)
     }
-        
-    private func SaveTrue (data: String, fileData: String ) {
-      let gcdTest = GCDDataManager()
-        gcdTest.writeData(data: data, fileForWrite: fileData)
-    }
+    
+    
     
     
     
@@ -270,7 +226,7 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
     
     
     
-}
+
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
@@ -282,3 +238,46 @@ fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePicke
 	return input.rawValue
 }
 
+
+
+// MARK: - Keyboard
+
+func removeKeyboardNotifications () {
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+}
+
+func registerForKeyboardNotifications () {
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+}
+
+@objc func keyboardWillShow (_ notification: Notification) {
+    let userInfo = notification.userInfo
+    let kbFrameSize = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+    scrollView.contentOffset = CGPoint(x: 0, y: kbFrameSize.height)
+}
+
+@ objc func keyboardWillHide (_ notification: Notification) {
+    scrollView.contentOffset = CGPoint.zero
+}
+
+}
+
+
+extension ProfileViewController
+{
+    func hideKeyboard()
+    {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(ConversationViewController.dismissKeyboard))
+        
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard()
+    {
+        view.endEditing(true)
+    }
+}

@@ -9,15 +9,20 @@
 import Foundation
 import CoreData
 
- class Storage {
+class Storage {
+
+    // NSPersistentStore
     
-    var storeUrl:URL {
+     var storeUrl:URL {
         let documentsUrl = FileManager.default.urls(for: .documentDirectory,
                                                    in: .userDomainMask).first!
-        return documentsUrl.appendingPathComponent("MyStore.sqlite")
+        return documentsUrl.appendingPathComponent("Storage.sqlite")
     }
     
-    let dataModelName = "UserData"
+    // NSManagedObjectModel
+    
+    
+    let dataModelName = "Storage"
     let dataModelExtension = "momd"
     
     lazy var managedObjectModel: NSManagedObjectModel = {
@@ -25,6 +30,8 @@ import CoreData
                                        withExtension: self.dataModelExtension)!
         return NSManagedObjectModel(contentsOf: modelURL)!
     }()
+    
+    // NSPersistentStoreCoordinator
     
     lazy var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
         let coordinator = NSPersistentStoreCoordinator(managedObjectModel: self.managedObjectModel)
@@ -36,6 +43,8 @@ import CoreData
         return coordinator
     }()
     
+    // masterContext
+    
     lazy var masterContext: NSManagedObjectContext = {
         var masterContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         
@@ -44,6 +53,8 @@ import CoreData
         return masterContext
     }()
     
+    // mainContext
+    
     lazy var mainContext: NSManagedObjectContext = {
         var mainContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
         mainContext.parent = self.masterContext
@@ -51,12 +62,15 @@ import CoreData
         return mainContext
     }()
     
+    // saveContext
+    
     lazy var saveContext: NSManagedObjectContext = {
         var saveContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         saveContext.parent = self.mainContext
         saveContext.mergePolicy = NSOverwriteMergePolicy
         return saveContext
     }()
+    
     
     typealias SaveCompletion = () -> Void
     func performSave (with context: NSManagedObjectContext, completion: SaveCompletion? = nil ) {
@@ -67,27 +81,38 @@ import CoreData
         context.perform {
             do {
                 try context.save()
+                print("SAVED")
             } catch {
                 print("Context save error: \(error)")
             }
             
             if let parentContext = context.parent {
                 self.performSave(with: parentContext, completion: completion)
+                print("???")
             } else {
                 completion?()
             }
         }
-    }
 
- /* let container = NSPersistentContainer(name: "Storage")
- let sqlite = NSPersistentStoreDescription(url: self.url(for:"Storage.sqlite")!)
- sqlite.type = NSSQLiteStoreType
- container.persistentStoreDescriptions = [sqlite]
- container.loadPersistentStores(completionHandler: { _, error in
-     guard let error = error else { return }
-     print(error)
- })
- let context = container.viewContext
-} */
+    }
+    
+    // return
+    
+    func appUser(context: NSManagedObjectContext) throws -> UserData {
+        let request = NSFetchRequest<UserData>(entityName: "UserData")
+        let users = try context.fetch(request)
+        if let user = users.first {
+            return user
+        }
+        let user = NSEntityDescription.insertNewObject(forEntityName: "UserData", into: context)
+            as! UserData
+        return user
+    }
+    
+    
+    
+    
+    
 }
+
 

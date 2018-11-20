@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5605CF0C217E4E3F00786E8E /* GCDDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5605CF0B217E4E3F00786E8E /* GCDDataManager.swift */; };
-		5605CF0E217E4E7500786E8E /* OperationDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5605CF0D217E4E7500786E8E /* OperationDataManager.swift */; };
 		560C823D2190B30E00ED0483 /* CommunicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C823C2190B30E00ED0483 /* CommunicatorProtocol.swift */; };
 		560C823F2190B45D00ED0483 /* MultipeerCommunicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C823E2190B45D00ED0483 /* MultipeerCommunicator.swift */; };
-		560C82412190B54500ED0483 /* CommunicationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560C82402190B54500ED0483 /* CommunicationManager.swift */; };
 		560FD8EF216B601300B70226 /* ConversationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FD8EE216B601300B70226 /* ConversationsListViewController.swift */; };
 		560FD8F1216B609F00B70226 /* CellConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FD8F0216B609F00B70226 /* CellConfig.swift */; };
 		560FD8F3216B784400B70226 /* ConversationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560FD8F2216B784400B70226 /* ConversationViewController.swift */; };
@@ -30,11 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		5605CF0B217E4E3F00786E8E /* GCDDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDDataManager.swift; sourceTree = "<group>"; };
-		5605CF0D217E4E7500786E8E /* OperationDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationDataManager.swift; sourceTree = "<group>"; };
 		560C823C2190B30E00ED0483 /* CommunicatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicatorProtocol.swift; sourceTree = "<group>"; };
 		560C823E2190B45D00ED0483 /* MultipeerCommunicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipeerCommunicator.swift; sourceTree = "<group>"; };
-		560C82402190B54500ED0483 /* CommunicationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunicationManager.swift; sourceTree = "<group>"; };
 		560FD8EE216B601300B70226 /* ConversationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsListViewController.swift; sourceTree = "<group>"; };
 		560FD8F0216B609F00B70226 /* CellConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellConfig.swift; sourceTree = "<group>"; };
 		560FD8F2216B784400B70226 /* ConversationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationViewController.swift; sourceTree = "<group>"; };
@@ -83,7 +77,6 @@
 			children = (
 				560C823C2190B30E00ED0483 /* CommunicatorProtocol.swift */,
 				560C823E2190B45D00ED0483 /* MultipeerCommunicator.swift */,
-				560C82402190B54500ED0483 /* CommunicationManager.swift */,
 			);
 			path = Multipeer;
 			sourceTree = "<group>";
@@ -115,12 +108,10 @@
 				560C823B2190B2E700ED0483 /* Multipeer */,
 				560C823A2190B29B00ED0483 /* Conversations */,
 				564BDEBC215B8FD500BD777E /* ProfileViewController.swift */,
-				5605CF0B217E4E3F00786E8E /* GCDDataManager.swift */,
 				566F6DE721914F1000463D61 /* ServiceLocator.swift */,
 				5697B942219A727A001C14D9 /* Storage.swift */,
 				566F6DE9219150B300463D61 /* ImageSourcePicker.swift */,
 				5697B93F219A7093001C14D9 /* Storage.xcdatamodeld */,
-				5605CF0D217E4E7500786E8E /* OperationDataManager.swift */,
 			);
 			path = TinkoffChat;
 			sourceTree = "<group>";
@@ -199,8 +190,6 @@
 			files = (
 				56EADCB121750A3C00A236FC /* Conversation.swift in Sources */,
 				5697B941219A7093001C14D9 /* Storage.xcdatamodeld in Sources */,
-				5605CF0E217E4E7500786E8E /* OperationDataManager.swift in Sources */,
-				560C82412190B54500ED0483 /* CommunicationManager.swift in Sources */,
 				560C823F2190B45D00ED0483 /* MultipeerCommunicator.swift in Sources */,
 				564BDEBD215B8FD500BD777E /* ProfileViewController.swift in Sources */,
 				566F6DEA219150B300463D61 /* ImageSourcePicker.swift in Sources */,
@@ -210,7 +199,6 @@
 				5631481F21562FD500F4A1B0 /* AppDelegate.swift in Sources */,
 				560C823D2190B30E00ED0483 /* CommunicatorProtocol.swift in Sources */,
 				56EADCB521754CDB00A236FC /* CellChatConfig.swift in Sources */,
-				5605CF0C217E4E3F00786E8E /* GCDDataManager.swift in Sources */,
 				560FD8EF216B601300B70226 /* ConversationsListViewController.swift in Sources */,
 				5697B943219A727A001C14D9 /* Storage.swift in Sources */,
 				56EADCB32175288900A236FC /* Message.swift in Sources */,
