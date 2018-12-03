@@ -17,16 +17,18 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
     var browser: MCNearbyServiceBrowser!
     
     var advertiser: MCNearbyServiceAdvertiser!
-   // var session: MCSession!
+    var session: MCSession!
     var sessions: [NSObject: MCSession] = [:]
     
-    private let myPeerID: MCPeerID
+    private var myPeerID: MCPeerID
     override init() {
-        
         myPeerID = MultipeerCommunicator.myPeerID(displayName: UIDevice.current.name)
-        
         super .init()
+
         
+         session = MCSession(peer: myPeerID, securityIdentity: nil, encryptionPreference: .none)
+        
+        session.delegate = self
         browser = MCNearbyServiceBrowser(peer: myPeerID, serviceType: serviceType)
         advertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: serviceType)
         browser.delegate = self
@@ -38,11 +40,7 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
         
     }
     
-    private lazy var session: MCSession = {
-        let session = MCSession(peer: myPeerID)
-        session.delegate = self
-        return session
-    }()
+    
     
     
     

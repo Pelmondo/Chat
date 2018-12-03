@@ -23,7 +23,7 @@ class ConversationsListViewController: UIViewController, UITableViewDelegate, UI
         tableView.estimatedRowHeight = 48
         appDelegate.mpcManager.advertiser.startAdvertisingPeer()
         appDelegate.mpcManager.browser.startBrowsingForPeers()
-        
+        appDelegate.mpcManager.delegate = self
         //
     }
     
