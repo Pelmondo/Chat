@@ -12,10 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    var mpcManager : MultipeerCommunicator!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("Application moved from Not running to inactive :\(#function)")
+        //mpcManager = MultipeerCommunicator()
+        mpcManager = MultipeerCommunicator()
+        
         return true
     }
 

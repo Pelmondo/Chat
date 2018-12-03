@@ -12,7 +12,7 @@ import UIKit
 
 class ConversationsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CommunicatorDelegate {
 
-    let mcControl = MultipeerCommunicator()
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,11 +21,10 @@ class ConversationsListViewController: UIViewController, UITableViewDelegate, UI
         self.tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 48
+        appDelegate.mpcManager.advertiser.startAdvertisingPeer()
+        appDelegate.mpcManager.browser.startBrowsingForPeers()
         
-        mcControl.delegate = self
-        mcControl.advertiser.startAdvertisingPeer()
-        mcControl.browser.startBrowsingForPeers()
-        
+        //
     }
     
     var sections : [[Conversation]] = [
@@ -66,14 +65,14 @@ class ConversationsListViewController: UIViewController, UITableViewDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mcControl.foundPeers.count
+        return appDelegate.mpcManager.foundPeers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
           let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell", for: indexPath)
         if let cell = cell as? ConversationCellConfiguration {
             let item = sections[indexPath.section][indexPath.row]
-            cell.name = mcControl.foundPeers[indexPath.row].displayName
+            cell.name = appDelegate.mpcManager.foundPeers[indexPath.row].displayName
             cell.message = item.message
             cell.date = item.date
             cell.online = item.online
@@ -91,7 +90,9 @@ class ConversationsListViewController: UIViewController, UITableViewDelegate, UI
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MySeg" {
-            segue.destination.title = mcControl.foundPeers[path.row].displayName
+            segue.destination.title = appDelegate.mpcManager.foundPeers[path.row].displayName
+           //appDelegate.mpcManager.advertiser.stopAdvertisingPeer()
+           // appDelegate.mpcManager.browser.stopBrowsingForPeers()
            // print(users[path.row])
         } else {
             super.prepare(for: segue, sender: sender)

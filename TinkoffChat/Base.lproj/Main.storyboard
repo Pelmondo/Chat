@@ -126,35 +126,8 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="sectionIndexBackgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="come" rowHeight="44" id="AiH-9n-mjv" customClass="CellChatConfig" customModule="TinkoffChat" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AiH-9n-mjv" id="8XR-wk-m2X">
-                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fId-bW-s89">
-                                                                    <rect key="frame" x="15" y="12" width="240" height="21"/>
-                                                                    <color key="backgroundColor" red="0.26279405183443139" green="0.81288709911596313" blue="1" alpha="0.67000000000000004" colorSpace="custom" customColorSpace="displayP3"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <nil key="textColor"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="fId-bW-s89" secondAttribute="trailing" constant="64" id="GTL-Lu-2cV"/>
-                                                                <constraint firstAttribute="bottom" secondItem="fId-bW-s89" secondAttribute="bottom" constant="11" id="Lad-9R-lV3"/>
-                                                                <constraint firstItem="fId-bW-s89" firstAttribute="top" secondItem="8XR-wk-m2X" secondAttribute="top" constant="12" id="WLj-h0-mAn"/>
-                                                                <constraint firstItem="fId-bW-s89" firstAttribute="width" secondItem="8XR-wk-m2X" secondAttribute="width" multiplier="3:4" id="cTl-0u-08C"/>
-                                                                <constraint firstItem="fId-bW-s89" firstAttribute="leading" secondItem="8XR-wk-m2X" secondAttribute="leading" constant="15" id="hko-fe-QCw"/>
-                                                            </constraints>
-                                                        </tableViewCellContentView>
-                                                        <connections>
-                                                            <outlet property="messageCome" destination="fId-bW-s89" id="Imt-zM-R9n"/>
-                                                        </connections>
-                                                    </tableViewCell>
                                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="out" rowHeight="44" id="jgw-dt-6BI" customClass="CellChatConfig" customModule="TinkoffChat" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jgw-dt-6BI" id="dok-gK-0hH">
                                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -178,6 +151,33 @@
                                                         </tableViewCellContentView>
                                                         <connections>
                                                             <outlet property="messageOut" destination="xZE-8o-bNt" id="NRC-Y1-apU"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="come" rowHeight="44" id="AiH-9n-mjv" customClass="CellChatConfig" customModule="TinkoffChat" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="72" width="320" height="44"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AiH-9n-mjv" id="8XR-wk-m2X">
+                                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fId-bW-s89">
+                                                                    <rect key="frame" x="15" y="12" width="240" height="21"/>
+                                                                    <color key="backgroundColor" red="0.26279405183443139" green="0.81288709911596313" blue="1" alpha="0.67000000000000004" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="fId-bW-s89" secondAttribute="trailing" constant="64" id="GTL-Lu-2cV"/>
+                                                                <constraint firstAttribute="bottom" secondItem="fId-bW-s89" secondAttribute="bottom" constant="11" id="Lad-9R-lV3"/>
+                                                                <constraint firstItem="fId-bW-s89" firstAttribute="top" secondItem="8XR-wk-m2X" secondAttribute="top" constant="12" id="WLj-h0-mAn"/>
+                                                                <constraint firstItem="fId-bW-s89" firstAttribute="width" secondItem="8XR-wk-m2X" secondAttribute="width" multiplier="3:4" id="cTl-0u-08C"/>
+                                                                <constraint firstItem="fId-bW-s89" firstAttribute="leading" secondItem="8XR-wk-m2X" secondAttribute="leading" constant="15" id="hko-fe-QCw"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="messageCome" destination="fId-bW-s89" id="Imt-zM-R9n"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -387,11 +387,46 @@
                         <outlet property="photoImageView" destination="Ql4-z1-796" id="CFs-Rp-EGc"/>
                         <outlet property="picthureButton" destination="WOw-Kr-Kxj" id="kDp-9g-yJj"/>
                         <outlet property="scrollView" destination="v2u-hG-wSF" id="bAG-Sk-lhM"/>
+                        <segue destination="6Z5-g5-aLB" kind="presentation" identifier="mySeg" id="pZz-pG-FWY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rQS-8a-dEo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4081.875" y="-55.985915492957744"/>
+            <point key="canvasLocation" x="3894" y="-55"/>
+        </scene>
+        <!--Collection Photo View-->
+        <scene sceneID="bxc-7C-OPE">
+            <objects>
+                <collectionViewController id="6Z5-g5-aLB" customClass="CollectionPhotoView" customModule="TinkoffChat" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" indicatorStyle="black" dataMode="prototypes" id="2xJ-vS-s4S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7nG-3v-mfb">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="nu8-Sl-4Q7">
+                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </view>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="6Z5-g5-aLB" id="P0j-h0-clL"/>
+                            <outlet property="delegate" destination="6Z5-g5-aLB" id="Ejo-ah-Aqj"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sZa-ib-tkV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4883" y="-56"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qQd-iM-grA">

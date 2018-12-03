@@ -19,16 +19,20 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     private let comingCell = "come"
     private let outCell = "out"
     
-    let mcConfig = MultipeerCommunicator()
+   
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         self.tableView.dataSource = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
         registerForKeyboardNotifications()
         self.hideKeyboard()
-        
+        messegeTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)),
+                                   for: UIControl.Event.editingChanged)
     }
     
     
@@ -61,7 +65,7 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
         let cell = tableView.dequeueReusableCell(withIdentifier: comingCell, for: indexPath)
             if let cell = cell as? MessageCellConfiguration {
                 let item = messages[indexPath.section][indexPath.row]
-                cell.textMessage = message
+                cell.textMessage = someString
                 cell.isInComing = item.isInComing
               //  print(item.isInComing)
             }
@@ -80,6 +84,19 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     var path = IndexPath()
     // MARK: - MC Delegate
     
+   
+    
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        if textField == messegeTextField {
+            if let text = messegeTextField.text, !text.trimmingCharacters(in: .whitespaces).isEmpty {
+                turnButtonWithAnimation(sendButton, on: true)
+            } else {
+                turnButtonWithAnimation(sendButton, on: false)
+            }
+        }
+    }
+    
+    
     func didFoundUser(_ communicator: Communicator, user: User) {
         tableView.reloadData()
     }
@@ -87,20 +104,58 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     func didLostUser(_ communicator: Communicator, user: User) {
         tableView.reloadData()
     }
-    var message = ""
+    var message = "text"
+    var someString = " "
+    
     func didReceiveMessage(_ communicator: Communicator, text: String, from user: User) {
-        message = text
+        tableView.reloadData()
     }
     
     func didFailed(_ communicator: Communicator, with error: Error) {
         
     }
     
+    
+    
     @IBAction func sendButtonDo(_ sender: UIButton) {
         print("Enter send button")
-        
+        guard let text = messegeTextField.text else { return}
+        print(appDelegate.mpcManager.foundPeers)
+        someString = text
+        tableView.reloadData()
+        let user = User(uid: appDelegate.mpcManager.foundPeers[0], name: appDelegate.mpcManager.foundPeers[0].displayName)
+        if appDelegate.mpcManager.sendMessage(text: text, to: user ) {
+            print(text)
+                self.messegeTextField.text = nil
+                self.turnButtonWithAnimation(sendButton, on: false)
+     } else {
+                let alert = UIAlertController(title: "Ошибка",
+                                              message: text,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(alert, animated: true)
+            }
     }
+    
+    
+    private func turnButtonWithAnimation(_ button: UIButton, on: Bool) {
+        guard button.isEnabled != on else {
+            return
+        }
         
+        let color = on ? #colorLiteral(red: 0.1058823529, green: 0.6784313725, blue: 0.9725490196, alpha: 1) : #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1)
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            button.isEnabled = on
+            button.setTitleColor(color, for: .normal)
+            button.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)
+        }) { _ in
+            UIView.animate(withDuration: 0.5, animations: {
+                button.transform = CGAffineTransform(scaleX: 1, y: 1)
+            })
+        }
+    }
+    
      // MARK - Keyboard
     
     func removeKeyboardNotifications () {

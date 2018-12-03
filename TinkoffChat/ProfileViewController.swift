@@ -168,7 +168,9 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
     }
     
     
-    
+    func goToNext() {
+        performSegue(withIdentifier: "mySeg", sender: Any?.self)
+    }
     
     
      // When touch up into button - action chose picture
@@ -178,6 +180,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UITextViewDe
         let alert = UIAlertController(title: "Изменить фото", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Галерея", style: .default, handler: { _ in
             self.openGallary()
+        }))
+        alert.addAction(UIAlertAction(title: "Загрузить фото", style: .default, handler: { _ in
+            print("Open URL")
+            self.goToNext()
         }))
         alert.addAction(UIAlertAction(title: NSLocalizedString("Отмена", comment: "Default action"), style: .cancel, handler: { _ in
             NSLog("The \"Отмена\" alert occured.")
