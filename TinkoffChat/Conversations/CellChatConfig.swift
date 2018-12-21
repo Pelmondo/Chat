@@ -11,6 +11,7 @@ import UIKit
 
 
 class CellChatConfig: UITableViewCell, MessageCellConfiguration {
+   
     
     @IBOutlet weak var messageCome: UILabel!
     @IBOutlet weak var messageOut: UILabel!
@@ -20,9 +21,9 @@ class CellChatConfig: UITableViewCell, MessageCellConfiguration {
     var test :Bool?
     
     
-    var isInComing : Bool = true {
+   var isInComing : Bool? {
         didSet {
-            let test = isInComing
+            guard let test = isInComing else {return}
             print(test)
             if test == false {
                 if let text = textMessage {

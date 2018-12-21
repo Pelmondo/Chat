@@ -19,6 +19,7 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
     var advertiser: MCNearbyServiceAdvertiser!
     var session: MCSession!
     var sessions: [NSObject: MCSession] = [:]
+    var userU : User!
     
     private var myPeerID: MCPeerID
     override init() {
@@ -33,18 +34,22 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
         advertiser = MCNearbyServiceAdvertiser(peer: myPeerID, discoveryInfo: nil, serviceType: serviceType)
         browser.delegate = self
        
-        
+        userU = User(uid:myPeerID, name: myPeerID.displayName)
         
         advertiser.delegate = self
       
         
     }
     
+    deinit {
+        advertiser.stopAdvertisingPeer()
+        browser.stopBrowsingForPeers()
+    }
     
     
     
     
-    let userU = User(uid: MultipeerCommunicator.myPeerID(displayName: UIDevice.current.name), name: "имя")
+    
     
     static func myPeerID(displayName: String) -> MCPeerID {
         let defaults = UserDefaults.standard
@@ -78,7 +83,10 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
         catch {
             print(error)
         }
-            delegate?.didReceiveMessage(self, text: text, from: userU)
+        DispatchQueue.main.async {
+            self.delegate?.didReceiveMessage(self, text: text, from: self.userU)
+        }
+        
             
          
         return true
@@ -90,10 +98,12 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
     // MARK: - MC Delegate
     
     func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didReceiveInvitationFromPeer peerID: MCPeerID, withContext context: Data?, invitationHandler: @escaping (Bool, MCSession?) -> Void) {
-        
-       
         invitationHandler(true, session)
         
+    }
+    
+    func advertiser(_ advertiser: MCNearbyServiceAdvertiser, didNotStartAdvertisingPeer error: Error) {
+        print(error)
     }
     
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
@@ -147,8 +157,7 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
         
             delegate?.didFoundUser(self, user: users)
         
-            let session = MCSession(peer: myPeerID)
-            session.delegate = self
+           
             browser.invitePeer(peerID, to: session, withContext: nil, timeout: 30.0)
     }
     
@@ -156,7 +165,7 @@ class MultipeerCommunicator: NSObject, MCNearbyServiceBrowserDelegate, MCNearbyS
         
         for (index, aPeer) in foundPeers.enumerated(){
             if aPeer == peerID {
-                foundPeers.remove(at: index)
+                foundPeers.removeAll()
                 break
             }
         }

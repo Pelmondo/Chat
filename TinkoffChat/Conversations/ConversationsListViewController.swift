@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import MultipeerConnectivity
 
 class ConversationsListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, CommunicatorDelegate {
 
@@ -83,6 +83,7 @@ class ConversationsListViewController: UIViewController, UITableViewDelegate, UI
        
     var path = IndexPath()
     
+    
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         path = indexPath
         return indexPath
@@ -98,6 +99,7 @@ class ConversationsListViewController: UIViewController, UITableViewDelegate, UI
             super.prepare(for: segue, sender: sender)
         }
     }
+    
     
     //MARK: - MC Delegate
     

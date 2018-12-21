@@ -33,6 +33,9 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
         self.hideKeyboard()
         messegeTextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)),
                                    for: UIControl.Event.editingChanged)
+       appDelegate.mpcManager.advertiser.startAdvertisingPeer()
+        appDelegate.mpcManager.browser.startBrowsingForPeers()
+        appDelegate.mpcManager.delegate = self
     }
     
     
@@ -48,7 +51,7 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
                                 Message(textMessage:"Первые попытки изучения транскриптома были предприняты в начале 1990-х годов. Благодаря развитию новых технологий в конце 1990-х транскриптомика стала важной биологической наукой. В настоящий момент в транскриптомике есть два основополагающих метода: проларвлопрлоарплоплоарпвапораолврвп олврпаорп р р" ,isInComing: false)]]
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 1
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -56,16 +59,16 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(messages[0].count)
-        return messages[0].count
+        
+        return inComingMessages.count + isOutMessages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
+        if inComingMessages.last?.isInComing == true  {
         let cell = tableView.dequeueReusableCell(withIdentifier: comingCell, for: indexPath)
             if let cell = cell as? MessageCellConfiguration {
-                let item = messages[indexPath.section][indexPath.row]
-                cell.textMessage = someString
+                let item = inComingMessages[indexPath.row]
+                cell.textMessage = item.textMessage
                 cell.isInComing = item.isInComing
               //  print(item.isInComing)
             }
@@ -73,7 +76,8 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: outCell, for: indexPath)
             if let cell = cell as? MessageCellConfiguration {
-                let item = messages[indexPath.section][indexPath.row]
+                let item = isOutMessages[indexPath.row]
+                print(indexPath.row)
                 cell.textMessage = item.textMessage
                 cell.isInComing = item.isInComing
                // print(item.isInComing)
@@ -105,10 +109,21 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
         tableView.reloadData()
     }
     var message = "text"
-    var someString = " "
+    var meme = [String]()
+    // testing
+   
+    var inComingMessages = [Message]()
+    var isOutMessages = [Message]()
+
     
     func didReceiveMessage(_ communicator: Communicator, text: String, from user: User) {
-        tableView.reloadData()
+        if user.name != UIDevice.current.name {
+          inComingMessages.append(Message(textMessage: text, isInComing: true))
+          print(inComingMessages)
+          DispatchQueue.main.async {
+              self.tableView.reloadData()
+           }
+        }
     }
     
     func didFailed(_ communicator: Communicator, with error: Error) {
@@ -118,14 +133,12 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     
     
     @IBAction func sendButtonDo(_ sender: UIButton) {
-        print("Enter send button")
         guard let text = messegeTextField.text else { return}
-        print(appDelegate.mpcManager.foundPeers)
-        someString = text
-        tableView.reloadData()
+        isOutMessages.append(Message(textMessage: text, isInComing: false))
+        print(isOutMessages)
         let user = User(uid: appDelegate.mpcManager.foundPeers[0], name: appDelegate.mpcManager.foundPeers[0].displayName)
+        tableView.reloadData()
         if appDelegate.mpcManager.sendMessage(text: text, to: user ) {
-            print(text)
                 self.messegeTextField.text = nil
                 self.turnButtonWithAnimation(sendButton, on: false)
      } else {
