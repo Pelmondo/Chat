@@ -11,16 +11,16 @@ import Foundation
 
 protocol MessageCellConfiguration : class {
     var textMessage: String? {get set}
-    var isInComing: Bool? {get set}
+    var isInComing: String {get set}
 }
 
 class Message: MessageCellConfiguration {
     
     var textMessage: String?
     
-    var isInComing : Bool?
+    var isInComing : String
     
-    init(textMessage: String?, isInComing: Bool) {
+    init(textMessage: String?, isInComing: String) {
         self.textMessage = textMessage
         self.isInComing = isInComing
     }

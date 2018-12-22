@@ -14,14 +14,24 @@ class CellChatConfig: UITableViewCell, MessageCellConfiguration {
    
     
     @IBOutlet weak var messageCome: UILabel!
-    @IBOutlet weak var messageOut: UILabel!
+
     
-    var textMessage : String?
+    var textMessage : String? {
+        didSet {
+            if let text = textMessage {
+                
+                messageCome.text = text
+                messageCome.layer.masksToBounds = true
+                messageCome.layer.cornerRadius = 6
+            }
+            
+        }
+    }
     
     var test :Bool?
     
     
-   var isInComing : Bool? {
+    var isInComing = String() /*{
         didSet {
             guard let test = isInComing else {return}
             print(test)
@@ -41,7 +51,7 @@ class CellChatConfig: UITableViewCell, MessageCellConfiguration {
                 }
             }
         }
-    }
+    } */
     
 }
     

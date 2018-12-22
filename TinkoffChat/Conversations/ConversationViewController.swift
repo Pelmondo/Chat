@@ -43,12 +43,7 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
         removeKeyboardNotifications()
     }
     
-    var messages : [[Message]] = [[Message(textMessage:"H" ,isInComing: true),
-                                Message(textMessage:"Тридцать символов вот прям точ" ,isInComing: true),
-                                Message(textMessage:"Первые попытки изучения транскриптома были предприняты в начале 1990-х годов. Благодаря развитию новых технологий в конце 1990-х транскриптомика стала важной биологической наукой. В настоящий момент в транскриптомике есть два основополагающих метода: проларвлопрлоарплоплоарпвапораолврвп олврпаорп р р",isInComing: true)],
-                                [Message(textMessage:"H" ,isInComing: false),
-                                Message(textMessage:"Тридцать символов вот прям точ",isInComing: false),
-                                Message(textMessage:"Первые попытки изучения транскриптома были предприняты в начале 1990-х годов. Благодаря развитию новых технологий в конце 1990-х транскриптомика стала важной биологической наукой. В настоящий момент в транскриптомике есть два основополагающих метода: проларвлопрлоарплоплоарпвапораолврвп олврпаорп р р" ,isInComing: false)]]
+    private var messages = [Message]()
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -60,31 +55,21 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return inComingMessages.count + isOutMessages.count
+        return messages.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if inComingMessages.last?.isInComing == true  {
-        let cell = tableView.dequeueReusableCell(withIdentifier: comingCell, for: indexPath)
+        let message = messages[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: message.isInComing, for: indexPath)
             if let cell = cell as? MessageCellConfiguration {
-                let item = inComingMessages[indexPath.row]
+                let item = message
                 cell.textMessage = item.textMessage
                 cell.isInComing = item.isInComing
-              //  print(item.isInComing)
-            }
-            return cell
-        } else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: outCell, for: indexPath)
-            if let cell = cell as? MessageCellConfiguration {
-                let item = isOutMessages[indexPath.row]
-                print(indexPath.row)
-                cell.textMessage = item.textMessage
-                cell.isInComing = item.isInComing
-               // print(item.isInComing)
+          
         }
             return cell
   }
- }
+ 
     var path = IndexPath()
     // MARK: - MC Delegate
     
@@ -118,8 +103,7 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     
     func didReceiveMessage(_ communicator: Communicator, text: String, from user: User) {
         if user.name != UIDevice.current.name {
-          inComingMessages.append(Message(textMessage: text, isInComing: true))
-          print(inComingMessages)
+          messages.append(Message(textMessage: text, isInComing: comingCell))
           DispatchQueue.main.async {
               self.tableView.reloadData()
            }
@@ -134,7 +118,7 @@ class ConversationViewController: UIViewController,UITableViewDataSource,UITable
     
     @IBAction func sendButtonDo(_ sender: UIButton) {
         guard let text = messegeTextField.text else { return}
-        isOutMessages.append(Message(textMessage: text, isInComing: false))
+        messages.append(Message(textMessage: text, isInComing: outCell))
         print(isOutMessages)
         let user = User(uid: appDelegate.mpcManager.foundPeers[0], name: appDelegate.mpcManager.foundPeers[0].displayName)
         tableView.reloadData()
